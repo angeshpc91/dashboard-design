@@ -1,34 +1,67 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import Card from './components/card/card'
+import forestImg from './assets/forest.png'
+import skyImg from './assets/sky.png'
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const mockCardData = [
+    {
+      subTitle: 'Volunteered Time',
+      mainTitle: '56 Hours',
+      bg: forestImg,
+    },
+    {
+      subTitle: 'Volunteered in',
+      mainTitle: '',
+      bg: '#000',
+    },
+    {
+      mainTitle: 'Jobs Available',
+      subTitle: 'Number of impressions',
+      data: [
+        {
+          place: 'Tata Memorial Hospital',
+          type: 'orphanage',
+          value: 6,
+        },
+        {
+          place: 'Hope Center',
+          type: 'orphanage',
+          value: 4,
+        },
+        {
+          place: 'Agni Mumbai',
+          type: 'Retirement Home',
+          value: 7,
+        },
+        {
+          place: 'COR Mumbai',
+          type: 'orphanage',
+          value: 8,
+        },
+        {
+          place: 'Tata Memorial',
+          type: 'Retirement Home',
+          value: 5,
+        },   
+      ]
+    },
+    {
+      subTitle: 'Next Coverage increase',
+      mainTitle: '₹1,00,000',
+      bottomTitle:'Increase coverage by volunteering for 4 hours',
+      bg: skyImg,
+    },
+  ]
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="container">
+      <h1>Dashboard Design</h1>
+      <div className='card-container'>
+        {mockCardData.map((card, index) => (
+          <Card key={index} {...card} />
+        ))}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }
 
