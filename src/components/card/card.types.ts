@@ -1,5 +1,6 @@
+import { ReactNode } from "react"
+
 export type ICardProps = {
-    mainTitle: string;
-    subTitle: string;
-    bg?: string;
+    children: ReactNode
+    customStyle:any
 }

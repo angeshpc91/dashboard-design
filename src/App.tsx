@@ -6,24 +6,28 @@ import skyImg from './assets/sky.png'
 function App() {
   const mockCardData = [
     {
-      subTitle: 'Volunteered in',
+      cardTitle: 'Volunteered in',
       mainTitle: '',
       bg: '#000',
+      type: 'graph',
     },
     {
-      subTitle: 'Volunteered Time',
+      cardTitle: 'Volunteered Time',
       mainTitle: '56 Hours',
       bg: forestImg,
+      type: 'image',
     },
     {
-      subTitle: 'Volunteered in',
+      cardTitle: 'Volunteered in',
       mainTitle: '',
       bg: '#000',
+      type: 'graph',
     },
     {
       mainTitle: 'Jobs Available',
-      subTitle: 'Number of impressions',
+      cardTitle: 'Number of impressions',
       bg: '#fff',
+      type: 'table',
       data: [
         {
           place: 'Tata Memorial Hospital',
@@ -54,10 +58,11 @@ function App() {
     },
     
     {
-      subTitle: 'Next Coverage increase',
+      cardTitle: 'Next Coverage increase',
       mainTitle: '₹1,00,000',
       bottomTitle:'Increase coverage by volunteering for 4 hours',
       bg: skyImg,
+      type: 'image',
     },
     
   ]
@@ -67,7 +72,17 @@ function App() {
       <nav></nav>
       <div className='card-container'>
         {mockCardData.map((card, index) => (
-          <Card key={index} {...card} />
+          
+          
+          <Card key={index} customStyle={{background: card.bg?.charAt(0) === '#'? card.bg : 'none'}} >
+            {card.bg?.charAt(0) !== '#' &&
+              <img src={card.bg} alt={card.mainTitle}/>
+            }
+            <div className="card-content">
+              <div>{card.cardTitle}</div>
+              {card.mainTitle && <h2>{card.mainTitle}</h2>}
+            </div>
+          </Card>
         ))}
       </div>
     </main>
