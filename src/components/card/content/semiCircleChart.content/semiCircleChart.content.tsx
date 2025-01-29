@@ -14,22 +14,30 @@ const SemiCircleChart: React.FC<SemiCircleChartProps> = ({
   const [dimensions, setDimensions] = useState({ width: 410, height: 210 });
 
   useEffect(() => {
+    if (containerRef.current) {
+      const width = containerRef.current.offsetWidth;
+      const height = width * 0.6;
+      setDimensions({ width, height });
+    }
+
+    // Handle Resize
     const updateSize = () => {
-      console.log("container ref", containerRef.current?.offsetWidth);
       if (containerRef.current) {
-        const width = containerRef.current.offsetWidth;
-        const height = width * 0.6;
-        setDimensions({ width, height });
+        setDimensions({
+          width: containerRef.current.offsetWidth,
+          height: containerRef.current.offsetWidth * 0.6,
+        });
       }
     };
 
-    updateSize();
-    const resizeObserver = new ResizeObserver(updateSize);
-    if (containerRef.current) resizeObserver.observe(containerRef.current);
+    window.addEventListener("resize", updateSize);
 
-    return () => resizeObserver.disconnect();
+    return () => {
+      window.removeEventListener("resize", updateSize);
+    };
   }, []);
 
+  // useEffect for graph
   useEffect(() => {
     if (!svgRef.current) return;
 
@@ -84,7 +92,7 @@ const SemiCircleChart: React.FC<SemiCircleChartProps> = ({
         "opacity",
         hovered === "retirement" ? 1 : hovered === null ? 1 : 0.4
       );
-  }, [orphanages, retirementHomes, hovered]);
+  }, [orphanages, retirementHomes, hovered, dimensions]);
 
   return (
     <div ref={containerRef}>

@@ -7,15 +7,16 @@ const LineChart: React.FC = () => {
 
   const [dimensions, setDimensions] = useState({
     width: 0,
-    height: 300,
+    height: 280,
   });
 
+  // useEffect for window resize
   useEffect(() => {
     // Set initial dimensions
     if (containerRef.current) {
       setDimensions({
         width: containerRef.current.clientWidth,
-        height: 300,
+        height: 280,
       });
     }
 
@@ -24,19 +25,19 @@ const LineChart: React.FC = () => {
       if (containerRef.current) {
         setDimensions({
           width: containerRef.current.clientWidth,
-          height: 300,
+          height: 280,
         });
       }
     };
 
     window.addEventListener("resize", handleResize);
 
-    // Cleanup on unmount
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
 
+  // useEffect for graph
   useEffect(() => {
     if (!svgRef.current || !containerRef.current) return;
 

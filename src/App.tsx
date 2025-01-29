@@ -11,7 +11,7 @@ function App() {
   const mockCardData = [
     {
       cardTitle: "Volunteered in",
-      mainTitle: "",
+      mainTitle: "₹4,20,000",
       bg: "#fff",
       type: "line-graph",
     },
@@ -19,7 +19,7 @@ function App() {
       cardTitle: "Volunteered Time",
       mainTitle: "56 Hours",
       bg: forestImg,
-      type: "image",
+      type: "image1",
     },
     {
       cardTitle: "Volunteered in",
@@ -38,6 +38,11 @@ function App() {
         { name: "Agni Mumbai", type: "Retirement home", duration: "7 hours" },
         { name: "COR Mumbai", type: "Orphanage", duration: "7 hours" },
         { name: "Tata Memorial", type: "Retirement home", duration: "2 hours" },
+        { name: "Tata Memorial", type: "Orphanage", duration: "6 hours" },
+        { name: "Hope Centre", type: "Orphanage", duration: "4 hours" },
+        { name: "Agni Mumbai", type: "Retirement home", duration: "7 hours" },
+        { name: "COR Mumbai", type: "Orphanage", duration: "7 hours" },
+        { name: "Tata Memorial", type: "Retirement home", duration: "2 hours" },
       ],
     },
 
@@ -46,56 +51,79 @@ function App() {
       mainTitle: "₹1,00,000",
       bottomTitle: "Increase coverage by volunteering for 4 hours",
       bg: skyImg,
-      type: "image",
+      type: "image2",
     },
   ];
   return (
-    <main className="container">
-      {/* <h1>Dashboard Design</h1> */}
+    <>
       <Menu></Menu>
-      <div className="card-container">
-        {mockCardData.map((card, index) => (
-          <Card
-            key={index}
-            customStyle={
-              card.bg?.charAt(0) === "#"
-                ? {
-                    background: card.bg,
-                  }
-                : {
-                    height: "400px",
-                  }
-            }
-          >
-            {card.bg?.charAt(0) !== "#" && (
-              <img src={card.bg} alt={card.mainTitle} />
-            )}
-            <div
-              className="card-content"
-              style={
-                card.data || card.type === "arc-graph" ? { padding: 0 } : {}
+      <main className="container">
+        <div className="card-container">
+          {mockCardData.map((card, index) => (
+            <Card
+              key={index}
+              customStyle={
+                card.bg?.charAt(0) === "#"
+                  ? {
+                      background: card.bg,
+                    }
+                  : {
+                      height: "400px",
+                    }
               }
             >
+              {card.bg?.charAt(0) !== "#" && (
+                <img src={card.bg} alt={card.mainTitle} />
+              )}
               <div
-                className="card-head-content"
-                style={card.data && { borderBottom: "1px solid" }}
+                className={`card-content ${
+                  card.type === "image2" && "card-image-content"
+                }`}
+                style={
+                  card.type === "table" || card.type === "arc-graph"
+                    ? { padding: 0 }
+                    : {}
+                }
               >
-                <span>{card.cardTitle}</span>
-                {card.data && <span className="see-all-button">See all</span>}
+                <div
+                  className={`card-head-content 
+                  ${card.type === "line-graph" && "card-head__line-graph"}
+                  ${card.type === "arc-graph" && "card-arc-graph"}
+                  ${card.type.includes("image") && "card-head__image"}
+                  ${card.type === "table" && "card-head__table"}`}
+                >
+                  <span>{card.cardTitle}</span>
+                  {card.data && <span className="see-all-button">See all</span>}
+                </div>
+                {card.mainTitle && (
+                  <div>
+                    <h2
+                      className={`main-title ${
+                        card.type === "line-graph" && "main-title__line-graph"
+                      }`}
+                    >
+                      {card.mainTitle}
+                    </h2>
+                    {card.type === "image2" && (
+                      <span>
+                        Increase coverage by volunteering for 4 hours.
+                      </span>
+                    )}
+                  </div>
+                )}
+
+                {/* CARD CONTENT STARTS HERE */}
+                {card.type === "line-graph" && <LineChart />}
+                {card.type === "arc-graph" && (
+                  <SemiCircleChart orphanages={3} retirementHomes={2} />
+                )}
+                {card.data && <JobContent data={card.data} />}
               </div>
-              {card.mainTitle && (
-                <h2 className="mainTitle">{card.mainTitle}</h2>
-              )}
-              {card.data && <JobContent data={card.data} />}
-              {index === 2 && (
-                <SemiCircleChart orphanages={3} retirementHomes={2} />
-              )}
-              {index === 0 && <LineChart />}
-            </div>
-          </Card>
-        ))}
-      </div>
-    </main>
+            </Card>
+          ))}
+        </div>
+      </main>
+    </>
   );
 }
 
