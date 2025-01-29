@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./menu.scss";
 
 const Menu = () => {
@@ -27,18 +27,17 @@ const Menu = () => {
         className="menu-icon"
         id="menu-icon-id"
         onClick={() => toggleMenu(!isActive)}
-        onBlur={toggleOff}
       >
         ☰ Menu
       </div>
       <ul className={`menu-items ${isActive ? "active" : ""}`}>
-        <li className="menu-item" onClick={toggleOff}>
+        <li className="menu-item" onClick={() => setIsActive(false)}>
           Your insurance plan
         </li>
-        <li className="menu-item" onClick={toggleOff}>
+        <li className="menu-item" onClick={() => setIsActive(false)}>
           Foundations
         </li>
-        <li className="menu-item" onClick={toggleOff}>
+        <li className="menu-item" onClick={() => setIsActive(false)}>
           Partners
         </li>
       </ul>

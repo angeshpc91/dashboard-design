@@ -61,7 +61,10 @@ const SemiCircleChart: React.FC<SemiCircleChartProps> = ({
     // Append orphanage arc
     svg
       .append("path")
-      .attr("d", arc.endAngle(orphanageAngle - Math.PI / 2) as string)
+      .attr(
+        "d",
+        arc.endAngle(orphanageAngle - Math.PI / 2) as unknown as string
+      )
       .attr("fill", hovered === "orphanage" ? "#FD7EE1" : "#FF66CC") // Pink
       .attr("transform", `translate(${width / 2},${height})`)
       .on("mouseover", () => setHovered("orphanage"))
@@ -80,7 +83,9 @@ const SemiCircleChart: React.FC<SemiCircleChartProps> = ({
         "d",
         arc
           .startAngle(orphanageAngle - Math.PI / 2)
-          .endAngle(orphanageAngle + retirementAngle - Math.PI / 2) as string
+          .endAngle(
+            orphanageAngle + retirementAngle - Math.PI / 2
+          ) as unknown as string
       )
       .attr("fill", hovered === "retirement" ? "#1F9D55" : "#2ECC71") // Green
       .attr("transform", `translate(${width / 2},${height})`)
