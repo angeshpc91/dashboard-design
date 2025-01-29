@@ -6,7 +6,6 @@
 .card-container {
   display: grid;
   gap: 1.25rem;
-  // margin-top: 40px;
   padding: 2.5rem;
 }
 
@@ -22,7 +21,7 @@
 }
 
 /* Tablet Layout */
-@media (min-width: 768px) and (max-width: 1023px) {
+@media (min-width: 768px) and (max-width: 1023.99px) {
   .card-container {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto;
@@ -34,7 +33,7 @@
 }
 
 /* Mobile Layout */
-@media (max-width: 767px) {
+@media (max-width: 767.99px) {
   .card-container {
     grid-template-columns: 1fr;
     grid-template-rows: auto;

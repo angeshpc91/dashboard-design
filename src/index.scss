@@ -12,6 +12,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f4f4f4;
 }
 
 body {
@@ -23,6 +24,6 @@ body {
 @media (prefers-color-scheme: light) {
   :root {
     color: $text-color;
-    background-color: $background-light;
+    background-color: $background-dark;
   }
 }

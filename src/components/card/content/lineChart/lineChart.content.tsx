@@ -15,7 +15,7 @@ const LineChart: React.FC = () => {
     // Set initial dimensions
     if (containerRef.current) {
       setDimensions({
-        width: containerRef.current.clientWidth,
+        width: containerRef.current.clientWidth - 10,
         height: 280,
       });
     }
@@ -24,7 +24,7 @@ const LineChart: React.FC = () => {
     const handleResize = () => {
       if (containerRef.current) {
         setDimensions({
-          width: containerRef.current.clientWidth,
+          width: containerRef.current.clientWidth - 10,
           height: 280,
         });
       }

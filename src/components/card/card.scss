@@ -2,9 +2,8 @@
 
 .card {
   background-color: $background-white;
-  border-radius: 0.5em;
-  box-shadow: 0 0 1em $box-shadow-color;
-  transition: transform 300ms;
+  border-radius: 20px;
+  // box-shadow: 0 0 1em $box-shadow-color; // box shadow looks good personal opinion
   display: flex;
   font-size: 16px;
   overflow: hidden;
@@ -17,19 +16,31 @@
     position: relative;
     z-index: 1;
     width: 100%;
-    .main-title{
+    .main-title {
       font-size: 40px;
       line-height: 48px;
+      font-weight: 600;
       margin: 0;
       margin-top: 8px;
     }
-    .main-title__line-graph{
-      color: $text-color;
+    .main-title__line-graph {
+      background: linear-gradient(to right, #000000de, #666666de);
+      background-clip: text;
+      color: transparent;
+      width: fit-content;
+      // color: $text-color;
+      // max-height: 0;
+      // opacity: 0;
+      .active {
+        opacity: 1;
+        max-height: 48px;
+        transition: opacity 0.1s ease, max-height 0.3s ease-in-out;
+      }
     }
-    .main-title__image{
+    .main-title__image {
     }
   }
-  .card-image-content{
+  .card-image-content {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -38,22 +49,29 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px;
+    padding: 28px 20px 8px 20px;
     border-color: $border-color;
   }
-  .card-head__line-graph{
+  .card-head__line-graph {
     padding: 0;
-    color: $text-color;
+    color: $secondary-text-color;
   }
-  .card-head__image{
+  .card-head__image {
     padding: 0;
+    color: $background-white;
+    &:nth-child(2) {
+      color: $secondary-text-color-dark;
+    }
   }
-  .card-head__arc_graph{
-
+  .card-head__arc_graph {
+    color: $secondary-text-color-dark;
   }
-  .card-head__table{
-    borderBottom: "1px solid";
-    color: $text-color;
+  .card-head__table {
+    // border-bottom: "1px solid";
+    color: $secondary-text-color;
+    padding-bottom: 28px;
+    height: 75px;
+    box-sizing: border-box;
   }
   img {
     position: absolute;
